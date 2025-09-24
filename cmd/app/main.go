@@ -1,5 +1,13 @@
 package main
 
+import (
+	"log"
+
+	"github.com/joho/godotenv"
+)
+
 func main() {
-	println("Hello, World!")
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("No .env file found")
+	}
 }

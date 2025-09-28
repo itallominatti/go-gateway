@@ -28,10 +28,10 @@ type Invoice struct {
 }
 
 type CreditCard struct {
-	Number          string
-	CVV             string
-	ExpiryMonth     int
-	CardholderNaame string
+	Number         string
+	CVV            string
+	ExpiryMonth    int
+	CardholderName string
 }
 
 func NewInvoice(accountID string, amount float64, description string, paymentType string, card CreditCard) (*Invoice, error) {

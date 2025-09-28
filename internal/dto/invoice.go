@@ -24,7 +24,7 @@ type CreateInvoiceInput struct {
 	CardholderName string  `json:"cardholder_name"`
 }
 
-type CreateInvoiceOutput struct {
+type InvoiceOutput struct {
 	ID             string    `json:"id"`
 	AccountID      string    `json:"account_id"`
 	Amount         float64   `json:"amount"`
@@ -45,4 +45,18 @@ func ToInvoice(input *CreateInvoiceInput, accountID string) (*domain.Invoice, er
 	}
 
 	return domain.NewInvoice(accountID, input.Amount, input.Description, input.PaymentType, card)
+}
+
+func FromInvoice(invoice *domain.Invoice) *InvoiceOutput {
+	return &InvoiceOutput{
+		ID:             invoice.ID,
+		AccountID:      invoice.AccountID,
+		Amount:         invoice.Amount,
+		Status:         string(invoice.Status),
+		Description:    invoice.Description,
+		PaymentType:    invoice.PaymentType,
+		CardLastDigits: invoice.CardLastDigits,
+		CreatedAt:      invoice.CreatedAt,
+		UpdatedAt:      invoice.UpdatedAt,
+	}
 }
